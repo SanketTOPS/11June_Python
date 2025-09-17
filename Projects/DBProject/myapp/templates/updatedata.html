@@ -5,26 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body style="background-color: rgb(136, 226, 219);">
-    <h1
-        style="text-align: center;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
-        Update Data</h1>
-    <hr>
+<body class="min-h-screen bg-gradient-to-r from-cyan-200 to-teal-400 flex items-center justify-center p-6">
 
-    <form method="post">
-        {% csrf_token %}
-        <input type="text" value="{{uid.name}}" name="name" placeholder="Name"><br><br>
-        <input type="email" value="{{uid.email}}" name="email" placeholder="Email"><br><br>
-        <input type="date" value="{{uid.dob | date:'Y-m-d'}}" name="dob" placeholder="dob"><br><br>
-        <input type="number" value="{{uid.mobile}}" name="mobile" placeholder="Mobile"><br><br>
-        <input type="submit" value="Update">
-    </form>
+    <div class="bg-white shadow-2xl rounded-2xl w-full max-w-md p-8">
+        <!-- Header -->
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Update Data</h1>
+        <hr class="mb-6 border-gray-300">
 
-    <hr>
+        <!-- Form -->
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
 
-    <a href="/showdata">All Data</a>
+            <input type="text" name="name" value="{{uid.name}}" placeholder="Name"
+                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 outline-none">
+
+            <input type="email" name="email" value="{{uid.email}}" placeholder="Email"
+                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 outline-none">
+
+            <input type="date" name="dob" value="{{uid.dob | date:'Y-m-d'}}"
+                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 outline-none">
+
+            <input type="number" name="mobile" value="{{uid.mobile}}" placeholder="Mobile"
+                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 outline-none">
+
+            <button type="submit"
+                class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 rounded-lg transition duration-300">
+                Update
+            </button>
+        </form>
+
+        <hr class="my-6 border-gray-300">
+
+        <!-- Back Link -->
+        <div class="text-center">
+            <a href="/showdata"
+                class="inline-block px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition">
+                Back to All Data
+            </a>
+        </div>
+    </div>
 
 </body>
 

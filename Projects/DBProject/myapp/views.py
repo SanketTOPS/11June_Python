@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from .forms import *
 
 # Create your views here.
@@ -29,3 +29,9 @@ def updatedata(request,id):
         else:
             print(form.errors)
     return render(request,'updatedata.html',{'uid':uid})
+
+def deletedata(request,id):
+    uid=userinfo.objects.get(id=id)
+    userinfo.delete(uid)
+    return redirect('showdata')
+    
