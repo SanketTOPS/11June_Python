@@ -12,10 +12,33 @@ def index(request):
     return render(request,'index.html',{'user':user})
 
 def notes(request):
+    user=request.session.get("user")
+    email=Usersignup.objects.get(email=user)
+    if request.method=='POST':
+        form=NotesForm(request.POST,request.FILES)
+        if form.is_valid():
+            temp=form.save(commit=False)
+            temp.status="Pending"
+            temp.email=email
+            temp.save()
+            print("Notes Submitted!")
+            return redirect('/')
+        else:
+            print(form.errors)
     return render(request,'notes.html')
 
 def profile(request):
-    return render(request,'profile.html')
+    userid=request.session.get("userid")
+    cuser=Usersignup.objects.get(id=userid)
+    if request.method=='POST':
+        form=SignupForm(request.POST,instance=cuser)
+        if form.is_valid():
+            form.save()
+            msg="Update Successfully!"
+            return redirect('/')
+        else:
+            print(form.errors)
+    return render(request,'profile.html',{'userid':cuser})
 
 def about(request):
     return render(request,'about.html')
@@ -30,10 +53,14 @@ def login(request):
         pas=request.POST['password']
         
         user=Usersignup.objects.filter(email=email,password=pas)
+        userid=Usersignup.objects.get(email=email)
+        print(userid.id)
         if user: #TRUE
             print("Login Successfully!")
             msg="Login Successfully!"
             request.session["user"]=email
+            request.session["userid"]=userid.id
+            
             return redirect('/')
         else:
             print("Error!Login Faild...")
