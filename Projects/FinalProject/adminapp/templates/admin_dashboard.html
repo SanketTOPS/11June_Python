@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen flex bg-gray-100">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-indigo-700 text-white hidden md:flex flex-col">
+        <div class="p-6 text-2xl font-bold border-b border-indigo-600">
+            Admin Panel
+        </div>
+        <nav class="flex-1 px-4 py-6 space-y-2">
+            <a href="#" class="block px-3 py-2 rounded-md hover:bg-indigo-600">Dashboard</a>
+            <a href="/adminapp/admin_userdata" class="block px-3 py-2 rounded-md hover:bg-indigo-600">Users's Data</a>
+            <a href="/adminapp/admin_notesdata" class="block px-3 py-2 rounded-md hover:bg-indigo-600">Notes's Data</a>
+
+        </nav>
+        <div class="p-4 border-t border-indigo-600">
+            <button class="w-full bg-red-500 hover:bg-red-600 px-4 py-2 rounded-md">Logout</button>
+        </div>
+    </aside>
+
+    <!-- Main content -->
+    <div class="flex-1 flex flex-col">
+
+        <!-- Top Navbar -->
+        <header class="flex items-center justify-between bg-white shadow px-6 py-4">
+            <h1 class="text-xl font-semibold text-gray-800">Dashboard</h1>
+            <div class="flex items-center gap-4">
+                <span class="text-gray-600">Hello, Admin</span>
+                <img src="https://via.placeholder.com/40" alt="Admin Avatar" class="w-10 h-10 rounded-full border">
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <main class="p-6 space-y-6">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+                    <h2 class="text-sm font-medium text-gray-500">Total Users</h2>
+                    <p class="text-2xl font-bold text-gray-800 mt-2">{{u}}</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+                    <h2 class="text-sm font-medium text-gray-500">Total Notes</h2>
+                    <p class="text-2xl font-bold text-gray-800 mt-2">{{n}}</p>
+                </div>
+
+            </div>
+
+            <!-- Table -->
+            <div class="bg-white p-6 rounded-lg shadow overflow-x-auto">
+                <h2 class="text-lg font-semibold mb-4 text-gray-800">Active Users</h2>
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b">
+                            <th class="py-2 px-4 text-gray-600">ID</th>
+                            <th class="py-2 px-4 text-gray-600">Full Name</th>
+                            <th class="py-2 px-4 text-gray-600">Email</th>
+                            <th class="py-2 px-4 text-gray-600">Mobile</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in userdata %}
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-2 px-4">{{i.id}}</td>
+                            <td class="py-2 px-4">{{i.fullname}}</td>
+                            <td class="py-2 px-4">{{i.email}}</td>
+                            <td class="py-2 px-4">{{i.mobile}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

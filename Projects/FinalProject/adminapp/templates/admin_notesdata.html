@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Submission</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+
+    <div class="w-full max-w-6xl bg-white rounded-lg shadow-lg p-6">
+        <!-- Header -->
+        <header class="mb-6 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-800">Submitted Notes</h1>
+            <button class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
+                + Add Note
+            </button>
+        </header>
+
+        <!-- Notes Table -->
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-indigo-600 text-white">
+                        <th class="py-3 px-4">ID</th>
+                        <th class="py-3 px-4">Submitted_at</th>
+                        <th class="py-3 px-4">User</th>
+                        <th class="py-3 px-4">Title</th>
+                        <th class="py-3 px-4">Category</th>
+                        <th class="py-3 px-4">File</th>
+                        <th class="py-3 px-4">Description</th>
+                        <th class="py-3 px-4">Status</th>
+                        <th class="py-3 px-4">Updated_at</th>
+                        <th class="py-3 px-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y">
+                    {% for i in notesdata %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="py-3 px-4">{{i.id}}</td>
+                        <td class="py-3 px-4">{{i.submitted_at}}</td>
+                        <td class="py-3 px-4">{{i.email}}</td>
+                        <td class="py-3 px-4">{{i.title}}</td>
+                        <td class="py-3 px-4">{{i.category}}</td>
+                        <td class="py-3 px-4">
+                            <a href="#" class="text-indigo-600 hover:underline">Download</a>
+                        </td>
+                        <td class="py-3 px-4">{{i.desc}}</td>
+                        <td class="py-3 px-4">
+                            <span class="px-2 py-1 rounded text-xs bg-green-100 text-green-600">{{i.status}}</span>
+                        </td>
+                        <td class="py-3 px-4">{{i.updated_at}}</td>
+                        <td class="py-3 px-4 flex gap-2">
+                            <button
+                                class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm">Approve</button>
+                            <button
+                                class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm">Reject</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
