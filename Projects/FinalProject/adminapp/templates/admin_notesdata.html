@@ -26,7 +26,8 @@
                     <tr class="bg-indigo-600 text-white">
                         <th class="py-3 px-4">ID</th>
                         <th class="py-3 px-4">Submitted_at</th>
-                        <th class="py-3 px-4">User</th>
+                        <th class="py-3 px-4">Name</th>
+                        <th class="py-3 px-4">User's Email</th>
                         <th class="py-3 px-4">Title</th>
                         <th class="py-3 px-4">Category</th>
                         <th class="py-3 px-4">File</th>
@@ -41,7 +42,8 @@
                     <tr class="hover:bg-gray-50">
                         <td class="py-3 px-4">{{i.id}}</td>
                         <td class="py-3 px-4">{{i.submitted_at}}</td>
-                        <td class="py-3 px-4">{{i.email}}</td>
+                        <td class="py-3 px-4">{{i.email.fullname}}</td>
+                        <td class="py-3 px-4">{{i.email.email}}</td>
                         <td class="py-3 px-4">{{i.title}}</td>
                         <td class="py-3 px-4">{{i.category}}</td>
                         <td class="py-3 px-4">
@@ -53,10 +55,10 @@
                         </td>
                         <td class="py-3 px-4">{{i.updated_at}}</td>
                         <td class="py-3 px-4 flex gap-2">
-                            <button
-                                class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm">Approve</button>
-                            <button
-                                class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm">Reject</button>
+                            <a href="/adminapp/notes_approve/{{i.id}}"
+                                class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm">Approve</a>
+                            <a href="/adminapp/notes_reject/{{i.id}}"
+                                class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm">Reject</a>
                         </td>
                     </tr>
                     {% endfor %}
