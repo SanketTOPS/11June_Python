@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'userapp',
     'adminapp',
+    
+    # Add this
+    'social_django',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -49,7 +53,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+    
+    # Add this
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+   ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 ROOT_URLCONF = 'FinalProject.urls'
 
@@ -64,6 +76,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+                # Add this line
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -139,3 +155,13 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "djangotops25@gmail.com"
 EMAIL_HOST_PASSWORD = "yvto jaem nepe kyhb"
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'userlogout'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '195926716353-lo3nbl8oojrvs8cvcfehbot9i6d65ie3.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
