@@ -4,7 +4,7 @@ from django.db import models
 
 class Usersignup(models.Model):
     fullname=models.CharField(max_length=50)
-    email=models.EmailField()
+    email=models.EmailField(unique=True)
     password=models.CharField(max_length=15)
     mobile=models.BigIntegerField()
     

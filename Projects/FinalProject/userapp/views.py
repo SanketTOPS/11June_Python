@@ -72,26 +72,32 @@ def signup(request):
     msg=""
     if request.method=='POST':
         form=SignupForm(request.POST)
-        if form.is_valid():
-            form.save()
-            msg="Signup Successfully!"
-            
-            # OTP Sending Code
-            global otp
-            otp=random.randint(111111,999999)
-            
-            sub="Your One Time Password!"
-            message=f"Dear User!\n\nThanks for register our service!\n\For account verification, Your one time password is {otp}.\n\nThanks & Regards\nNotesApp Team\n+91 9724799469 | sanket.tops@gmail.com"
-            from_email=settings.EMAIL_HOST_USER
-            to_email=[request.POST["email"]]
-            
-            send_mail(subject=sub,message=message,from_email=from_email,recipient_list=to_email)
-            
-            print("Email sent successfully!")
-            return redirect('otpverify')
+        em=request.POST["email"]
+        email=Usersignup.objects.filter(email=em).exists()
+        if email:
+            print("Email addredd is already exists!")
+            msg="Email addredd is already exists!"
         else:
-            print(form.errors)
-            msg="Error!Something went wrong..."
+            if form.is_valid():
+                form.save()
+                msg="Signup Successfully!"
+                
+                # OTP Sending Code
+                global otp
+                otp=random.randint(111111,999999)
+                
+                sub="Your One Time Password!"
+                message=f"Dear User!\n\nThanks for register our service!\n\For account verification, Your one time password is {otp}.\n\nThanks & Regards\nNotesApp Team\n+91 9724799469 | sanket.tops@gmail.com"
+                from_email=settings.EMAIL_HOST_USER
+                to_email=[request.POST["email"]]
+                
+                send_mail(subject=sub,message=message,from_email=from_email,recipient_list=to_email)
+                
+                print("Email sent successfully!")
+                return redirect('otpverify')
+            else:
+                print(form.errors)
+                msg="Error!Something went wrong..."
     return render(request,'signup.html',{'msg':msg})
 
 def userlogout(request):
