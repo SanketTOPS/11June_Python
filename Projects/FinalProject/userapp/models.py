@@ -24,3 +24,7 @@ class Notes(models.Model):
     updated_at=models.DateTimeField(blank=True,null=True)
     
     
+class Contact(models.Model):
+    fullname=models.CharField(max_length=50)
+    email=models.EmailField()
+    msg=models.TextField()

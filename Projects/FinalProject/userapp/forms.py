@@ -11,3 +11,8 @@ class NotesForm(forms.ModelForm):
     class Meta:
         model=Notes
         fields=['title','category','notesfile','desc']
+        
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model=Contact
+        fields='__all__'

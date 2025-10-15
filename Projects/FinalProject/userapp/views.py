@@ -12,20 +12,23 @@ def index(request):
     return render(request,'index.html',{'user':user})
 
 def notes(request):
-    user=request.session.get("user")
-    email=Usersignup.objects.get(email=user)
-    if request.method=='POST':
-        form=NotesForm(request.POST,request.FILES)
-        if form.is_valid():
-            temp=form.save(commit=False)
-            temp.status="Pending"
-            temp.email=email
-            temp.save()
-            print("Notes Submitted!")
-            return redirect('/')
-        else:
-            print(form.errors)
-    return render(request,'notes.html')
+    try:
+        user=request.session.get("user")
+        email=Usersignup.objects.get(email=user)
+        if request.method=='POST':
+            form=NotesForm(request.POST,request.FILES)
+            if form.is_valid():
+                temp=form.save(commit=False)
+                temp.status="Pending"
+                temp.email=email
+                temp.save()
+                print("Notes Submitted!")
+                return redirect('/')
+            else:
+                print(form.errors)
+    except:
+        print("Error!")    
+    return render(request,'notes.html',{'user':user})
 
 def profile(request):
     userid=request.session.get("userid")
@@ -44,7 +47,23 @@ def about(request):
     return render(request,'about.html')
 
 def contact(request):
-    return render(request,'contact.html')
+    user=request.session.get("user")
+    if request.method=='POST':
+        form=ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print("Message sent successfully!")
+            #Email Sending
+            sub="Thank You!"
+            msg=f"Dear User\n\nThanks for connecting with us, and also using our services.\n\nWe will contact you shortly.\n\nThanks & Regards\nNotesApp Team\n+91 9724799469 | sanket.tops@gmail.com"
+            from_mail=settings.EMAIL_HOST_USER
+            to_mail=[request.POST['email']]
+            send_mail(subject=sub,message=msg,from_email=from_mail,recipient_list=to_mail)
+            
+            return redirect('contact')
+        else:
+            print(form.errors)
+    return render(request,'contact.html',{'user':user})
 
 def login(request):
     msg=""

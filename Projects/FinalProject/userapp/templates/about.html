@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | Your Website Name</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navbar -->
+    <header class="bg-white shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <h1 class="text-2xl font-bold text-indigo-600">YourBrand</h1>
+            <nav class="space-x-6 hidden md:flex">
+                <a href="index.html" class="hover:text-indigo-600">Home</a>
+                <a href="about.html" class="text-indigo-600 font-semibold border-b-2 border-indigo-600">About</a>
+                <a href="services.html" class="hover:text-indigo-600">Services</a>
+                <a href="contact.html" class="hover:text-indigo-600">Contact</a>
+            </nav>
+            <button class="md:hidden text-gray-700" id="menu-btn">☰</button>
+        </div>
+        <div class="md:hidden hidden flex-col items-center bg-white border-t" id="mobile-menu">
+            <a href="index.html" class="py-2 hover:text-indigo-600">Home</a>
+            <a href="about.html" class="py-2 text-indigo-600 font-semibold">About</a>
+            <a href="services.html" class="py-2 hover:text-indigo-600">Services</a>
+            <a href="contact.html" class="py-2 hover:text-indigo-600">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-indigo-600 text-white py-20 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">About Our Company</h2>
+        <p class="text-lg max-w-2xl mx-auto">We are dedicated to delivering innovative and quality solutions that help
+            businesses grow and students achieve their dreams.</p>
+    </section>
+
+    <!-- About Content -->
+    <section class="py-16 px-6 md:px-20 max-w-6xl mx-auto text-center md:text-left">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+            <img src="https://source.unsplash.com/600x400/?team,office" alt="Our Team" class="rounded-2xl shadow-lg">
+            <div>
+                <h3 class="text-3xl font-semibold mb-4 text-indigo-700">Who We Are</h3>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    Founded in 2010, our mission is to empower individuals and organizations through the power of
+                    technology and creativity. We specialize in IT training, web solutions, and innovative project
+                    development.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    Our team of professionals combines passion with experience to create meaningful impact and
+                    measurable success for our clients and students.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-16 bg-gray-100 text-center">
+        <h3 class="text-3xl font-semibold mb-10 text-indigo-700">Meet Our Team</h3>
+        <div class="grid gap-10 sm:grid-cols-2 md:grid-cols-3 max-w-6xl mx-auto px-6">
+            <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+                <img src="https://source.unsplash.com/150x150/?man,face" alt="Member"
+                    class="w-24 h-24 rounded-full mx-auto mb-4">
+                <h4 class="text-xl font-semibold">Sanket Chauhan</h4>
+                <p class="text-gray-500">Python & Digital Marketing Trainer</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+                <img src="https://source.unsplash.com/150x150/?woman,face" alt="Member"
+                    class="w-24 h-24 rounded-full mx-auto mb-4">
+                <h4 class="text-xl font-semibold">Priya Patel</h4>
+                <p class="text-gray-500">UI/UX Designer</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+                <img src="https://source.unsplash.com/150x150/?developer,face" alt="Member"
+                    class="w-24 h-24 rounded-full mx-auto mb-4">
+                <h4 class="text-xl font-semibold">Jaydeep Shah</h4>
+                <p class="text-gray-500">Full Stack Developer</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-indigo-700 text-white py-8 text-center">
+        <p>© 2025 YourBrand. All Rights Reserved.</p>
+        <p class="text-sm mt-2">Made with ❤️ using Tailwind CSS</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+
+</html>
