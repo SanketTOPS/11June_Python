@@ -44,7 +44,8 @@ def profile(request):
     return render(request,'profile.html',{'userid':cuser})
 
 def about(request):
-    return render(request,'about.html')
+    user=request.session.get("user")
+    return render(request,'about.html',{'user':user})
 
 def contact(request):
     user=request.session.get("user")
