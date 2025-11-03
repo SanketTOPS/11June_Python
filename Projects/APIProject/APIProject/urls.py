@@ -21,4 +21,9 @@ from apiapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('getall/',views.getall),
+    path('getid/<int:id>',views.getid),
+    path('deletedata/<int:id>',views.deletedata),
+    path('savedata/',views.savedata),
+    path('updatedata/<int:id>',views.updatedata),
+    path('',views.home),
 ]
